@@ -1,46 +1,28 @@
-package ua.lviv.iot.algo.part1;
+package ua.lviv.iot.algo.part1.lab2;
 
 import lombok.*;
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @ToString
-    public class Chainsaw {
-        private String brand;
-        private int power;
-        private double fuelTankCapacity;
-        private double fuelLevel;
-        private boolean isWorking = false;
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
+public class Chainsaw extends Saw {
+    private double fuelTankCapacity;
+    private double fuelLevel;
+    private double fuelConsumption;
 
-        public void cutWood(double length) {
-            final double n = 0.1;
-            final double requiredFuel = length * n;
-            if (requiredFuel > this.fuelLevel) {
-                fuelLevel = 0;
-                isWorking = false;
-            } else {
-                isWorking = true;
-                fuelLevel -= requiredFuel;
-                System.out.printf("length : %.2f\nfuelLevel : %.2f\n", length, fuelLevel );
-            }
-        }
+    public Chainsaw (double fuelTankCapacity, double fuelLevel, double fuelConsumption, String brand, int power, double workInHours, boolean isWorking) {
+        super (brand, power, workInHours, isWorking);
+        this.fuelTankCapacity = fuelTankCapacity;
+        this.fuelLevel = fuelLevel;
+        this.fuelConsumption = fuelConsumption;
+    }
 
-        public static void main(String[] args) {
-        };
-
-        public void start () {
-            this.isWorking = true;
-        }
-
-        public void stop () {
-            this.isWorking = false;
-        }
-
-        private static Chainsaw instance = new Chainsaw();
-
-        static Chainsaw getInstance () {
-            return instance;
+    public double getRemainingWorkTime() {
+        if (super.isWorking()) {
+            return (fuelLevel / fuelConsumption);
+        } else {
+            return 0;
         }
     }
+}
