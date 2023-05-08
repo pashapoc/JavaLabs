@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab2;
+package ua.lviv.iot;
 
 import lombok.*;
 
@@ -11,8 +11,8 @@ public class ElectricSaw extends Saw {
     private double batteryCapacity;
     private double batteryConsuming;
 
-    public ElectricSaw (String electricEngineType, double batteryCapacity, double batteryConsuming, String brand, int power, double workInHours, boolean isWorking) {
-        super (brand, power, workInHours, isWorking);
+    public ElectricSaw(String electricEngineType, double batteryCapacity, double batteryConsuming, String brand, int power, double workInHours, boolean isWorking) {
+        super(brand, power, workInHours, isWorking);
         this.electricEngineType = electricEngineType;
         this.batteryCapacity = batteryCapacity;
         this.batteryConsuming = batteryConsuming;
@@ -24,5 +24,13 @@ public class ElectricSaw extends Saw {
         } else {
             return 0;
         }
+    }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", " + "electricEngineType, batteryCapacity, batteryConsuming";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + ", " + String.format("%s, %s, %s", electricEngineType, batteryCapacity, batteryConsuming);
     }
 }

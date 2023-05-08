@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab2;
+package ua.lviv.iot;
 
 import lombok.*;
 
@@ -11,8 +11,8 @@ public class MiniRechargeableSaw extends Saw {
     private String batteryType;
     private double batteryConsuming;
 
-    public MiniRechargeableSaw (double batteryCapacity, String BatteryType, double batteryConsuming, String brand, int power, double WorkInHours, boolean isWorking) {
-        super (brand, power, WorkInHours, isWorking);
+    public MiniRechargeableSaw(double batteryCapacity, String BatteryType, double batteryConsuming, String brand, int power, double WorkInHours, boolean isWorking) {
+        super(brand, power, WorkInHours, isWorking);
         this.batteryType = batteryType;
         this.batteryCapacity = batteryCapacity;
         this.batteryConsuming = batteryConsuming;
@@ -24,5 +24,13 @@ public class MiniRechargeableSaw extends Saw {
         } else {
             return 0;
         }
+    }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", " + "batteryCapacity, batteryType, batteryConsuming";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + ", " + String.format("%s, %s, %s", batteryCapacity, batteryType, batteryConsuming);
     }
 }
