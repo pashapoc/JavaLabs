@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab2;
+package ua.lviv.iot;
 
 import lombok.*;
 
@@ -11,8 +11,8 @@ public class ReciprocatingSaw extends Saw {
     private String specialFeature;
     private double batteryConsuming;
 
-    public ReciprocatingSaw (double batteryCapacity, String specialFeature, double batteryConsuming, String brand, int power, double workInHours, boolean isWorking) {
-        super (brand, power, workInHours, isWorking);
+    public ReciprocatingSaw(double batteryCapacity, String specialFeature, double batteryConsuming, String brand, int power, double workInHours, boolean isWorking) {
+        super(brand, power, workInHours, isWorking);
         this.specialFeature = specialFeature;
         this.batteryCapacity = batteryCapacity;
         this.batteryConsuming = batteryConsuming;
@@ -24,5 +24,13 @@ public class ReciprocatingSaw extends Saw {
         } else {
             return 0;
         }
+    }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", " + "batteryCapacity, specialFeature, batteryConsuming";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + ", " + String.format("%s, %s, %s", batteryCapacity, specialFeature, batteryConsuming);
     }
 }

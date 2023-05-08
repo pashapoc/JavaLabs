@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab2;
+package ua.lviv.iot;
 
 import lombok.*;
 
@@ -14,4 +14,13 @@ public abstract class Saw {
     private boolean isWorking;
 
     public abstract double getRemainingWorkTime();
+
+    public String getHeaders() {
+        String header = "brand, power, workInHours, isWorking";
+        return header;
+    }
+
+    public String toCSV() {
+        return String.format("%s, %s, %s, %s", brand, power, workInHours, isWorking);
+    }
 }
